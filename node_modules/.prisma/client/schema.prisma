@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id Int @id @default(autoincrement())
+  email String @db.VarChar(255) @unique
+  fullName String @db.VarChar(255)
+  userRole Int @db.Int
+  phoneNo String @db.VarChar(50) @unique
+  userName String @db.VarChar(255) @unique
+  createdDate DateTime @default(now())
+  updatedDate DateTime  @default(now())
+  password String @db.VarChar(300)
+  isActive Boolean @db.Bit(1)
+}
+
+model userRole {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+}
+
+model service {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  fee Decimal @db.Decimal(10,0)
+}
+
+model duration_status {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+}
+
+model customer {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  phoneNo String @db.VarChar(50) @unique
+  email String @db.VarChar(255) @unique
+  createdDate DateTime  @default(now())
+  updatedDate DateTime  @default(now())
+  address String @db.VarChar(250)
+  nrc String @db.VarChar(100) @unique
+}
+
+model booking {
+  id Int @id @default(autoincrement()) @unique
+  customerId Int @db.Int
+  carNo String @db.VarChar(100)
+  note String @db.VarChar(255)
+  createdDate DateTime @default(now())
+  updatedDate DateTime  @default(now())
+  durationDay Int @db.Int
+  durationType Int @db.Int
+  status Int @db.Int
+  service String @db.VarChar(250)
+}
+
+model booking_status {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+}
