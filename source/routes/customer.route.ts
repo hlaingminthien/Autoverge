@@ -7,5 +7,6 @@ router.post('/create', controller.CreateCustomer);
 router.post('/update', controller.UpdateCustomer);
 router.get('/list', controller.GetCustomer);
 router.get('/:id', controller.GetCustomerById);
+router.get('/delete/:id', controller.DeleteCustomer);
 
 export = router;

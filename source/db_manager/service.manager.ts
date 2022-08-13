@@ -1,12 +1,12 @@
-import { customer, PrismaClient, user } from '@prisma/client';
+import { service, PrismaClient, user } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const Create = (customerData: customer) => {
+const Create = (serviceData: service) => {
     return new Promise(function (resolve, reject) {
-        prisma.customer
+        prisma.service
             .create({
-                data: customerData
+                data: serviceData
             })
             .then((data) => {
                 prisma.$disconnect();
@@ -21,7 +21,7 @@ const Create = (customerData: customer) => {
 
 const Get = () => {
     return new Promise(function (resolve, reject) {
-        prisma.customer
+        prisma.service
             .findMany()
             .then((data) => {
                 prisma.$disconnect();
@@ -36,7 +36,7 @@ const Get = () => {
 
 const GetById = (id: string) => {
     return new Promise(function (resolve, reject) {
-        prisma.customer
+        prisma.service
             .findUnique({
                 where: {
                     id: parseInt(id)
@@ -53,14 +53,14 @@ const GetById = (id: string) => {
     });
 };
 
-const Update = (customerData: customer) => {
+const Update = (serviceData: service) => {
     return new Promise(function (resolve, reject) {
-        prisma.customer
+        prisma.service
             .update({
                 where: {
-                    id: customerData.id
+                    id: serviceData.id
                 },
-                data: customerData
+                data: serviceData
             })
             .then((data) => {
                 prisma.$disconnect();
@@ -75,7 +75,7 @@ const Update = (customerData: customer) => {
 
 const Delete = (id: string) => {
     return new Promise(function (resolve, reject) {
-        prisma.customer
+        prisma.service
             .delete({
                 where: {
                     id: parseInt(id)

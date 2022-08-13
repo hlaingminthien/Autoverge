@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import db_manager from '../db_manager/customer.manager';
+import db_manager from '../db_manager/service.manager';
 
-const CreateCustomer = (req: Request, res: Response, next: NextFunction) => {
+const CreateService = (req: Request, res: Response, next: NextFunction) => {
     db_manager
         .Create(req.body)
         .then((data) => res.send(data))
@@ -11,7 +11,7 @@ const CreateCustomer = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const GetCustomer = (req: Request, res: Response, next: NextFunction) => {
+const GetService = (req: Request, res: Response, next: NextFunction) => {
     db_manager
         .Get()
         .then((data) => res.send(data))
@@ -21,7 +21,7 @@ const GetCustomer = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const GetCustomerById = (req: Request, res: Response, next: NextFunction) => {
+const GetServiceById = (req: Request, res: Response, next: NextFunction) => {
     db_manager
         .GetById(req.params.id)
         .then((data) => res.send(data))
@@ -31,7 +31,7 @@ const GetCustomerById = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const UpdateCustomer = (req: Request, res: Response, next: NextFunction) => {
+const UpdateService = (req: Request, res: Response, next: NextFunction) => {
     db_manager
         .Update(req.body)
         .then((data) => res.send(data))
@@ -41,7 +41,7 @@ const UpdateCustomer = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const DeleteCustomer = (req: Request, res: Response, next: NextFunction) => {
+const DeleteService = (req: Request, res: Response, next: NextFunction) => {
     db_manager
         .Delete(req.params.id)
         .then((data) => res.send(data))
@@ -51,4 +51,4 @@ const DeleteCustomer = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-export default { CreateCustomer, GetCustomer, UpdateCustomer, GetCustomerById, DeleteCustomer };
+export default { CreateService, GetService, UpdateService, GetServiceById, DeleteService };

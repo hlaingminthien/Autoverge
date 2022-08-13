@@ -7,5 +7,6 @@ router.post('/create', controller.CreateBooking);
 router.post('/update', controller.UpdateBooking);
 router.get('/list', controller.GetBooking);
 router.get('/:id', controller.GetBookingById);
+router.get('/delete/:id', controller.DeleteBooking);
 
 export = router;

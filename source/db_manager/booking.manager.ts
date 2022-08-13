@@ -98,4 +98,23 @@ const Update = (bookingData: booking) => {
     });
 };
 
-export default { Create, Get, Update, GetById };
+const Delete = (id: string) => {
+    return new Promise(function (resolve, reject) {
+        prisma.booking
+            .delete({
+                where: {
+                    id: parseInt(id)
+                }
+            })
+            .then((data) => {
+                prisma.$disconnect();
+                resolve(data);
+            })
+            .catch((e) => {
+                prisma.$disconnect();
+                reject(e);
+            });
+    });
+};
+
+export default { Create, Get, Update, GetById, Delete };

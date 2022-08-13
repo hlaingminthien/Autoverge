@@ -52,4 +52,14 @@ const UpdateBooking = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-export default { CreateBooking, GetBooking, UpdateBooking, GetBookingById };
+const DeleteBooking = (req: Request, res: Response, next: NextFunction) => {
+    db_manager
+        .Delete(req.params.id)
+        .then((data) => res.send(data))
+        .catch((err) => {
+            res.status(400);
+            res.send(err);
+        });
+};
+
+export default { CreateBooking, GetBooking, UpdateBooking, GetBookingById, DeleteBooking };
