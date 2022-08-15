@@ -12,7 +12,7 @@ const Create = (bookingData: booking) => {
                 prisma.$disconnect();
                 prisma
                     .$queryRaw(
-                        Prisma.sql`SELECT *, bs.name status, c.email FROM booking b LEFT JOIN 
+                        Prisma.sql`SELECT *, bs.name status, c.id customerId, c.email FROM booking b LEFT JOIN 
                                     customer c ON b.customerId = c.id 
                                     LEFT JOIN booking_status bs ON bs.id = b.status WHERE b.id = ${data.id};`
                     )
@@ -32,7 +32,7 @@ const Get = () => {
     return new Promise(function (resolve, reject) {
         prisma
             .$queryRaw(
-                Prisma.sql`SELECT b.id, b.createdDate, c.name customer, c.email, b.carNo, b.service,
+                Prisma.sql`SELECT b.id, b.createdDate, c.name customer, c.id customerId, c.email, b.carNo, b.service,
                 bs.name status, b.durationDay, ds.name durationType, note
                 FROM booking b LEFT JOIN customer c ON b.customerId = c.id LEFT JOIN
                 booking_status bs ON b.status = bs.id LEFT JOIN 

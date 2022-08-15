@@ -4,10 +4,12 @@ import express from 'express';
 import logging from './config/logging';
 import config from './config/config';
 import indexRoute from './routes/index.route';
+var cors = require('cors');
 
 const NAMESPACE = 'Server';
 const router = express();
 
+router.use(cors());
 /** Log the request */
 router.use((req, res, next) => {
     /** Log the req */
